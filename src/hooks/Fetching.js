@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import axios from "./axios";
+import axios from "../utlis/axios";
 
-export const useFetchMonsters = () => {
+export const useFetch = (urlPath) => {
   const [loading, setLoading] = useState(true);
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
   useEffect(() => {
     const FetchData = () => {
       axios
-        .get(`/monsters`, {})
+        .get(urlPath, {})
         .then((res) => {
           const data = res.data;
           console.log(data);
@@ -21,6 +21,6 @@ export const useFetchMonsters = () => {
         });
     };
     FetchData();
-  }, []);
+  }, [urlPath]);
   return { loading, response, error };
 };

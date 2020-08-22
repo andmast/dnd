@@ -1,7 +1,7 @@
 import React from "react";
-import { useFetchMonsters } from "./hooks/axiosFetching";
+import { useFetch } from "./hooks/Fetching";
 const Monsters = () => {
-  const { loading, response: monsters, error } = useFetchMonsters();
+  const { loading, response: monsters, error } = useFetch("/monsters");
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -11,6 +11,7 @@ const Monsters = () => {
       {monsters.results.map((monster) => (
         <p key={monster.index}>{monster.name}</p>
       ))}
+      {error}
     </div>
   );
 };
