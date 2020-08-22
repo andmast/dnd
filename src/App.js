@@ -1,5 +1,5 @@
 import React from "react";
-import Monsters from "./Monsters";
+import Monsters from "./Monsters/Monsters";
 
 const App = () => {
   return (
