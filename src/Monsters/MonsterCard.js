@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { MonsterDetails } from "./MonsterDetails";
 
 export const MonsterCard = ({ name, url }) => {
   const [showDetails, setShowDetails] = useState(false);
@@ -8,7 +9,11 @@ export const MonsterCard = ({ name, url }) => {
       <button onClick={() => setShowDetails(!showDetails)}>
         monsterDetails
       </button>
-      {showDetails && <div>monsterDetails, {url}</div>}
+      {showDetails && (
+        <div>
+          <MonsterDetails url={url} />
+        </div>
+      )}
     </div>
   );
 };
