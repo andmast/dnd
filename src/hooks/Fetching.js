@@ -32,12 +32,12 @@ export const FetchMonstersWithDetails = (urlPath) => {
   useEffect(() => {
     const FetchData = async () => {
       try {
-        let test = await axios.get(urlPath, {});
-        let testLength = test.data.results.length;
-        test.data.results.map(async (monster, index) => {
-          let test = await axios.get(monster.url, {});
-          setResponse((oldResponse) => [...oldResponse, test.data]);
-          if (index === testLength - 1) {
+        let monsters = await axios.get(urlPath, {});
+        let monstersLength = monsters.data.results.length;
+        monsters.data.results.map(async (monster, index) => {
+          let monsterDetails = await axios.get(monster.url, {});
+          setResponse((oldResponse) => [...oldResponse, monsterDetails.data]);
+          if (index === monstersLength - 1) {
             setLoading(false);
           }
         });
