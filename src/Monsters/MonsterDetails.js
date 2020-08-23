@@ -32,16 +32,38 @@ const Actions = ({ actions, index }) => {
   return (
     <div>
       {actions.map((action) => (
-        <h1 key={`${index}${action.name}`}>{action.name}</h1>
+        <div key={`${index}${action.name}`}>
+          <p>{action.name}</p>
+          <p>{action.desc}</p>
+        </div>
       ))}
     </div>
   );
 };
 
-const Stats = ({ stats, index }) => {
+const Stats = ({ stats }) => {
   return (
     <Fragment>
-      <div>{stats.dexterity}</div>;
+      <div>
+        {Object.keys(stats).map((key, index) => {
+          return typeof stats[key] === "object" ? (
+            <div key={`${key}${index}`}>
+              <p>{key.toUpperCase()}</p>
+              {Object.keys(stats[key]).map((innerKey, index) => {
+                return (
+                  <p key={`${innerKey}${index}`}>
+                    {innerKey.toUpperCase()}:{stats[key][innerKey]}
+                  </p>
+                );
+              })}
+            </div>
+          ) : (
+            <p key={`${key}${index}`}>
+              {key.toUpperCase()}:{stats[key]}
+            </p>
+          );
+        })}
+      </div>
     </Fragment>
   );
 };
