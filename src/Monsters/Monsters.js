@@ -11,8 +11,7 @@ const Monsters = () => {
   return (
     <div>
       {monsters.map((monster) => {
-        const { index, name, url } = monster;
-        return <MonsterCard key={index} name={name} url={url} />;
+        return <MonsterCard monster={monster} />;
       })}
       {error}
     </div>

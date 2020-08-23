@@ -1,30 +1,24 @@
 import React, { Fragment } from "react";
-import { useFetch } from "../hooks/Fetching";
 
-export const MonsterDetails = ({ url }) => {
-  const { loading, response: details, error } = useFetch(url);
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+export const MonsterDetails = ({ monster }) => {
   const stats = {
-    strength: details.strength,
-    dexterity: details.dexterity,
-    constitution: details.constitution,
-    intelligence: details.intelligence,
-    wisdom: details.wisdom,
-    charisma: details.charisma,
-    armor_class: details.armor_class,
-    hit_points: details.hit_points,
-    speed: details.speed,
-    challenge_rating: details.challenge_rating,
-    size: details.size,
+    strength: monster.strength,
+    dexterity: monster.dexterity,
+    constitution: monster.constitution,
+    intelligence: monster.intelligence,
+    wisdom: monster.wisdom,
+    charisma: monster.charisma,
+    armor_class: monster.armor_class,
+    hit_points: monster.hit_points,
+    speed: monster.speed,
+    challenge_rating: monster.challenge_rating,
+    size: monster.size,
   };
 
   return (
     <div>
-      <Actions index={details.index} actions={details.actions} />
+      <Actions index={monster.index} actions={monster.actions} />
       <Stats stats={stats} />
-      {error}
     </div>
   );
 };

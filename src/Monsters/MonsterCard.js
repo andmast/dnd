@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { MonsterDetails } from "./MonsterDetails";
 import { Button } from "antd";
 
-export const MonsterCard = ({ name, url }) => {
+export const MonsterCard = ({ monster }) => {
   const [showDetails, setShowDetails] = useState(false);
   return (
     <div>
-      <p>{name}</p>
+      <p>{monster.name}</p>
       <Button type="primary" onClick={() => setShowDetails(!showDetails)}>
         Details
       </Button>
       {showDetails && (
         <div>
-          <MonsterDetails url={url} />
+          <MonsterDetails monster={monster} />
         </div>
       )}
     </div>
