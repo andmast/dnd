@@ -17,6 +17,7 @@ export const MonsterDetails = ({ url }) => {
     hit_points: details.hit_points,
     speed: details.speed,
     challenge_rating: details.challenge_rating,
+    size: details.size,
   };
 
   return (
@@ -29,6 +30,7 @@ export const MonsterDetails = ({ url }) => {
 };
 
 const Actions = ({ actions, index }) => {
+  if (!actions) return null;
   return (
     <div>
       {actions.map((action) => (
