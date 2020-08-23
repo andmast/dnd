@@ -31,15 +31,19 @@ export const FetchMonstersWithDetails = (urlPath) => {
   const [error, setError] = useState(null);
   useEffect(() => {
     const FetchData = async () => {
-      let test = await axios.get(urlPath, {});
-      let testLength = test.data.results.length;
-      test.data.results.map(async (monster, index) => {
-        let test = await axios.get(monster.url, {});
-        setResponse((oldResponse) => [...oldResponse, test.data]);
-        if (index === testLength - 1) {
-          setLoading(false);
-        }
-      });
+      try {
+        let test = await axios.get(urlPath, {});
+        let testLength = test.data.results.length;
+        test.data.results.map(async (monster, index) => {
+          let test = await axios.get(monster.url, {});
+          setResponse((oldResponse) => [...oldResponse, test.data]);
+          if (index === testLength - 1) {
+            setLoading(false);
+          }
+        });
+      } catch (err) {
+        setError(err);
+      }
     };
     FetchData();
   }, [urlPath]);
