@@ -1,14 +1,21 @@
 import React from "react";
 import Monsters from "./Monsters/Monsters";
+import { Layout } from "antd";
+
+const { Header, Footer, Sider, Content } = Layout;
 
 const App = () => {
   return (
-    <div>
-      DND
-      <div>
-        <Monsters />
-      </div>
-    </div>
+    <Layout>
+      <Sider>Sider</Sider>
+      <Layout>
+        <Header>DND</Header>
+        <Content>
+          <Monsters />
+        </Content>
+        <Footer>Footer</Footer>
+      </Layout>
+    </Layout>
   );
 };
 
