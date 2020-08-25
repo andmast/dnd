@@ -1,18 +1,29 @@
-import React from "react";
-import { merge, bounce, flash } from "react-animations";
+import React, { Fragment } from "react";
+import { bounce } from "react-animations";
 import styled, { keyframes } from "styled-components";
-const bounceFlash = merge(bounce, flash);
 
-const bounceFlashAnimation = keyframes`${bounceFlash}`;
+const bounceAnimation = keyframes`${bounce}`;
 
-const BounceFlashDiv = styled.div`
-  animation: 5s ${bounceFlashAnimation} infinite;
+const BounceDiv = styled.div`
+  animation: 1s ${bounceAnimation} infinite;
+`;
+
+const LoadingContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
 `;
 
 export const Loading = () => {
   return (
-    <BounceFlashDiv>
-      <h1>Test</h1>
-    </BounceFlashDiv>
+    <Fragment>
+      <LoadingContainer>
+        <BounceDiv>
+          <h1>Test</h1>
+        </BounceDiv>
+        <BounceDiv>
+          <h1>Test</h1>
+        </BounceDiv>
+      </LoadingContainer>
+    </Fragment>
   );
 };
