@@ -25,19 +25,25 @@ export const useFetch = (urlPath) => {
   return { loading, response, error };
 };
 
-export const FetchMonstersWithDetails = (urlPath) => {
+export const FetchDataWithDetails = (urlPath) => {
   const [loading, setLoading] = useState(true);
   const [response, setResponse] = useState([]);
   const [error, setError] = useState(null);
   useEffect(() => {
     const FetchData = async () => {
       try {
-        let monsters = await axios.get(urlPath, {});
-        let monstersLength = monsters.data.results.length;
-        monsters.data.results.map(async (monster, index) => {
-          let monsterDetails = await axios.get(monster.url, {});
-          setResponse((oldResponse) => [...oldResponse, monsterDetails.data]);
-          if (index === monstersLength - 1) {
+        let firstResponse = await axios.get(urlPath, {});
+        let firstResponseLength = firstResponse.data.results.length;
+        firstResponse.data.results.map(async (firstResponseItem, index) => {
+          let firstResponseItemDetails = await axios.get(
+            firstResponseItem.url,
+            {}
+          );
+          setResponse((oldResponse) => [
+            ...oldResponse,
+            firstResponseItemDetails.data,
+          ]);
+          if (index === firstResponseLength - 1) {
             setLoading(false);
           }
         });

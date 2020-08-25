@@ -1,12 +1,14 @@
 import React from "react";
-import { FetchMonstersWithDetails } from "../hooks/Fetching";
+import { FetchDataWithDetails } from "../hooks/Fetching";
 import { MonsterCard } from "./MonsterCard";
+import { Loading } from "../shared/Loading";
+
 const Monsters = () => {
-  const { loading, response: monsters, error } = FetchMonstersWithDetails(
+  const { loading, response: monsters, error } = FetchDataWithDetails(
     "api/monsters"
   );
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   return (
     <div>
