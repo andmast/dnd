@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 
 export const MonsterDetails = ({ monster }) => {
+  console.log(monster);
   const stats = {
     strength: monster.strength,
     dexterity: monster.dexterity,
