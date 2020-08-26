@@ -63,6 +63,7 @@ const Monsters = () => {
         dataSource={monsters}
         columns={columns}
         pagination={{ position: ["topRight", "none"] }}
+        scroll={{ y: 240 }}
       />
       {/* {monsters.map((monster) => {
         return <MonsterCard monster={monster} />;
