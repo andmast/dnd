@@ -20,6 +20,18 @@ const columns = [
     title: "alignment",
     dataIndex: "alignment",
     key: "alignment",
+    filters: [
+      { text: "Chaotic Evil", value: "chaotic evil" },
+      { text: "Lawful Good", value: "lawful good" },
+      { text: "Chaotic Good", value: "chaotic good" },
+      { text: "Lawful Evil", value: "lawful evil" },
+      { text: "Neutral", value: "neutral" },
+      { text: "Any Alignment", value: "any" },
+      { text: "Unaligned", value: "unaligned" },
+    ],
+    onFilter: (value, record) => {
+      return record.alignment.includes(value);
+    },
   },
   {
     title: "hit_points",
@@ -63,7 +75,6 @@ const Monsters = () => {
         dataSource={monsters}
         columns={columns}
         pagination={{ position: ["topRight", "none"] }}
-        scroll={{ y: 240 }}
       />
       {/* {monsters.map((monster) => {
         return <MonsterCard monster={monster} />;
