@@ -1,7 +1,5 @@
 import React from "react";
 import { FetchDataWithDetails } from "../hooks/Fetching";
-import { MonsterCard } from "./MonsterCard";
-import { Loading } from "../shared/Loading";
 import { Table } from "antd";
 
 const columns = [
@@ -9,12 +7,29 @@ const columns = [
     title: "Name",
     dataIndex: "name",
     key: "name",
-    sorter: (a, b) => a.name - b.name,
   },
   {
     title: "Type",
     dataIndex: "type",
     key: "type", // add subtype sub heading
+    filters: [
+      { text: "aberration", value: "aberration" },
+      { text: "Beast", value: "beast" },
+      { text: "Celestial", value: "celestial" },
+      { text: "Construct", value: "construct" },
+      { text: "Dragon", value: "dragon" },
+      { text: "Elemental", value: "elemental" },
+      { text: "Fey", value: "fey" },
+      { text: "Fiend", value: "fiend" },
+      { text: "Giant", value: "giant" },
+      { text: "Humanoid", value: "humanoid" },
+      { text: "Monstrosity", value: "monstrosity" },
+      { text: "Ooze", value: "ooze" },
+      { text: "Plant", value: "plant" },
+    ],
+    onFilter: (value, record) => {
+      return record.type.includes(value);
+    },
   },
   {
     title: "alignment",
@@ -68,6 +83,7 @@ const Monsters = () => {
   const { loading, response: monsters, error } = FetchDataWithDetails(
     "api/monsters"
   );
+
   return (
     <div>
       <Table
@@ -76,10 +92,7 @@ const Monsters = () => {
         columns={columns}
         pagination={{ position: ["topRight", "none"] }}
       />
-      {/* {monsters.map((monster) => {
-        return <MonsterCard monster={monster} />;
-      })} */}
-      {/* {error} */}
+      {error}
     </div>
   );
 };
