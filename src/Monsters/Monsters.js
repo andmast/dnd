@@ -1,6 +1,7 @@
 import React from "react";
 import { FetchDataWithDetails } from "../hooks/Fetching";
 import { Table } from "antd";
+import { AlignmentTag } from "./AlignmentTag";
 
 const columns = [
   {
@@ -47,6 +48,7 @@ const columns = [
     onFilter: (value, record) => {
       return record.alignment.includes(value);
     },
+    render: (value) => <AlignmentTag value={value} />,
   },
   {
     title: "hit_points",
